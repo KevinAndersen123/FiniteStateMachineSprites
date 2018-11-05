@@ -16,7 +16,7 @@ int main()
 	sf::Texture texture;
 	if (!texture.loadFromFile("assets\\grid.png")) {
 		DEBUG_MSG("Failed to load file");
-		return EXIT_FAILURE;
+		return 0;
 	}
 
 	// Setup Players Default Animated Sprite
@@ -56,7 +56,24 @@ int main()
 				}
 				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 				{
-					input.setCurrent(Input::Action::UP);
+					input.setCurrent(Input::Action::CLIMBING);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+				{
+					input.setCurrent(Input::Action::SHOVELING);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+				{
+					input.setCurrent(Input::Action::HAMMERING);
+				}
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				{
+					input.setCurrent(Input::Action::WALKING);
+				}
+				
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				{
+					input.setCurrent(Input::Action::SWORDMANSHIP);
 				}
 				break;
 			default:
@@ -81,5 +98,5 @@ int main()
 		window.display();
 	}
 
-	return EXIT_SUCCESS;
+	return 1;
 };
