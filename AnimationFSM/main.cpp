@@ -24,7 +24,6 @@ int main()
 	// Setup the Player
 	Player player(animated_sprite);
 	Input input;
-	
 	// Start the game loop
 	while (window.isOpen())
 	{
@@ -55,16 +54,16 @@ int main()
 				{
 					input.setCurrent(Input::Action::SHOVELING);
 				}
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::H))
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F1))
 				{
 					input.setCurrent(Input::Action::HAMMERING);
 				}
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F2))
 				{
 					input.setCurrent(Input::Action::WALKING);
 				}
 
-				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+				else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F3))
 				{
 					input.setCurrent(Input::Action::SWORDMANSHIP);
 				}

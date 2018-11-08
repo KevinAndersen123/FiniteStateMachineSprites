@@ -31,12 +31,6 @@ void Player::handleInput(Input in)
 
 	switch (in.getCurrent())
 	{
-	case Input::Action::IDLE:
-		//std::cout << "Player Idling" << std::endl;
-		m_animation.idle();
-		m_animated_sprite.setFrameRow(0);
-		m_timeBeforeIdle = m_COOLDOWN;
-		break;
 	case Input::Action::CLIMBING:
 		//std::cout << "Player climbs" << std::endl;
 		m_animation.climbing();
@@ -80,6 +74,12 @@ void Player::handleInput(Input in)
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	default:
+		if (sf::seconds(0.0f) >= m_timeBeforeIdle)
+		{
+			//std::cout << "Player Idling" << std::endl;
+			m_animation.idle();
+			m_animated_sprite.setFrameRow(0);
+		}
 		break;
 	}
 }
@@ -88,4 +88,10 @@ void Player::update()
 {
 	//std::cout << "Handle Update" << std::endl;
 	m_animated_sprite.update();
+
+	if (sf::seconds(0.0f) < m_timeBeforeIdle)
+	{
+		m_timeBeforeIdle -= m_clock.getElapsedTime();
+		m_clock.restart();
+	}
 }
