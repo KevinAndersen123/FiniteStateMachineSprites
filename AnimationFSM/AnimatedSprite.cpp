@@ -1,52 +1,66 @@
 #include <AnimatedSprite.h>
 
-AnimatedSprite::AnimatedSprite() 
+AnimatedSprite::AnimatedSprite()
 {
-	m_current_frame = 0;
+	m_currentFrameCol = 0;
+	m_currentFrameRow = 0;
+	setCurrentFrame();
 }
 
-AnimatedSprite::AnimatedSprite(const sf::Texture& t) : Sprite(t), m_current_frame(0), m_time(seconds(0.5f)) {}
+AnimatedSprite::AnimatedSprite(const sf::Texture& t) :
+	Sprite(t),
+	m_currentFrameCol(0),
+	m_currentFrameRow(0),
+	m_time(seconds(0.5f))
 
-AnimatedSprite::AnimatedSprite(const sf::Texture& t, const sf::IntRect& rect) : Sprite(t), m_current_frame(0), m_time(seconds(0.5f)) {
-	m_frames.push_back(rect);
+{
+	setCurrentFrame();
 }
 
-AnimatedSprite::~AnimatedSprite() {}
+AnimatedSprite::~AnimatedSprite()
+{
+}
 
-const sf::Clock& AnimatedSprite::getClock() {
+const Clock & AnimatedSprite::getClock()
+{
 	return m_clock;
 }
 
-const sf::Time& AnimatedSprite::getTime() {
+const Time & AnimatedSprite::getTime()
+{
 	return m_time;
 }
 
-const vector<IntRect>& AnimatedSprite::getFrames() {
-	return m_frames;
+const IntRect AnimatedSprite::getCurrentFrame()
+{
+	return m_currentFrame;
 }
 
-const IntRect& AnimatedSprite::getFrame(int n) {
-	return m_frames[n];
-}
-
-void AnimatedSprite::addFrame(IntRect& frame) {
-	m_frames.push_back(frame);
-}
-
-const int AnimatedSprite::getCurrentFrame() {
-	return m_current_frame;
-}
-
-void AnimatedSprite::update(){
-	if (m_clock.getElapsedTime() > m_time) {
-		if (m_frames.size() > m_current_frame + 1)
+void AnimatedSprite::update()
+{
+	if (m_clock.getElapsedTime() > m_time)
+	{
+		if(m_currentFrameCol < 5)
 		{
-			m_current_frame++;
+			m_currentFrameCol++;
 		}
-		else {
-			m_current_frame = 0;
+		else
+		{
+			m_currentFrameCol = 0;
 		}
+		setCurrentFrame();
 		m_clock.restart();
+
 	}
+}
+
+void AnimatedSprite::setFrameRow(int t_newRow)
+{
+	m_currentFrameRow = t_newRow;
+}
+
+void AnimatedSprite::setCurrentFrame()
+{
+	m_currentFrame = IntRect(3 + m_currentFrameCol * 85, 3 + m_currentFrameRow * 85, 84, 84);
 }
 
