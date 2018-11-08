@@ -24,6 +24,9 @@ public:
 	void jumping();
 	void climbing();
 	void shoveling();
+	void hammering();
+	void sword();
+	void walking();
 
 // Try uncommenting and comment the declaration above
 //private:

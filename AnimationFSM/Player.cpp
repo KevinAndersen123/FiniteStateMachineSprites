@@ -52,15 +52,15 @@ void Player::handleInput(Input in)
 		break;
 	case Input::Action::SWORDMANSHIP:
 		//std::cout << "Player now has a sword" << std::endl;
-		//m_animation.sword();
+		m_animation.sword();
 		break;
 	case Input::Action::WALKING:
 		//std::cout << "Player Walking" << std::endl;
-		//m_animation.walking();
+		m_animation.walking();
 		break;
 	case Input::Action::HAMMERING:
 		//std::cout << "Player hammering" << std::endl;
-		//m_animation.hammering();
+		m_animation.hammering();
 		break;
 	default:
 		break;
