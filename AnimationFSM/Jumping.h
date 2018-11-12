@@ -10,6 +10,10 @@ public:
 	~Jumping() {};
 	void idle(Animation* a);
 	void climbing(Animation* a);
+	void walking(Animation*a);
+	void sword(Animation*a);
+	void shoveling(Animation*a);
+	void hammering(Animation *a);
 };
 
 #endif // !IDLE_H

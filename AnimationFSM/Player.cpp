@@ -34,43 +34,65 @@ void Player::handleInput(Input in)
 	case Input::Action::CLIMBING:
 		//std::cout << "Player climbs" << std::endl;
 		m_animation.climbing();
-		m_animated_sprite.setFrameRow(2);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(2);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::LEFT:
 		//std::cout << "Player jumps Left" << std::endl;
 		m_animation.jumping();
-		m_animated_sprite.setFrameRow(5);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(5);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::RIGHT:
 		//std::cout << "Player jumps right" << std::endl;
 		m_animation.jumping();
-		m_animated_sprite.setFrameRow(5);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(5);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::SHOVELING:
 		//std::cout << "Player Shoveling" << std::endl;
 		m_animation.shoveling();
-		m_animated_sprite.setFrameRow(1);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(1);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::SWORDMANSHIP:
 		//std::cout << "Player now has a sword" << std::endl;
 		m_animation.sword();
-		m_animated_sprite.setFrameRow(4);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(4);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::WALKING:
 		//std::cout << "Player Walking" << std::endl;
 		m_animation.walking();
-		m_animated_sprite.setFrameRow(3);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(3);
+		}
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	case Input::Action::HAMMERING:
 		//std::cout << "Player hammering" << std::endl;
 		m_animation.hammering();
-		m_animated_sprite.setFrameRow(6);
+		if (m_animation.getCurrent() != m_animation.getPrevious())
+		{
+			m_animated_sprite.setFrameRow(6);
+		}
+		
 		m_timeBeforeIdle = m_COOLDOWN;
 		break;
 	default:
@@ -78,11 +100,16 @@ void Player::handleInput(Input in)
 		{
 			//std::cout << "Player Idling" << std::endl;
 			m_animation.idle();
-			m_animated_sprite.setFrameRow(0);
+			if (m_animation.getCurrent() != m_animation.getPrevious())
+			{
+				m_animated_sprite.setFrameRow(0);
+			}
 		}
 		break;
 	}
+	m_animation.setPrevious(m_animation.getCurrent()); //sets current to previous
 }
+
 
 void Player::update()
 {
